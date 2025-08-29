@@ -103,6 +103,8 @@ class LightweightAttn(tf.keras.layers.Layer):
 - LayerNorm → Attention → LayerNorm → SwiGLU → LayerNorm → Residual 연결
 - 다중 블록을 쌓아 심층 트랜스포머 모델 구성
 
+---
+
 ### 손실 및 평가 지표
 - Smoothed Cross-Entropy Loss
 ```python
@@ -141,3 +143,26 @@ def masked_perplexity(y_true, y_pred, eps=0.1):
     return tf.exp(mean_loss)
 ```
 - pad_id 토큰을 제외하고 계산하여 패딩 영향을 제거
+
+---
+
+## 모델 하이퍼파라미터
+
+| 파라미터          | 값              |
+| ------------- | -------------- |
+| vocab\_size   | 32768 |
+| seq\_len      | 100       |
+| d\_model      | 256            |
+| n\_layers     | 12             |
+| d\_ff         | 1024           |
+| num\_heads    | 8              |
+| dropout\_rate | 0.1            |
+
+---
+
+## 데이터셋
+
+Smolite는 다음 데이터셋으로 학습 가능합니다:
+
+* [Smolwrite Dataset](https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset)
+
