@@ -57,7 +57,6 @@ class LightweightAttn(tf.keras.layers.Layer):
         self.ln = tf.keras.layers.LayerNormalization(epsilon=1e-5)
 
     def apply_rope(self, x):
-        # x: [B, H, L, D_head]
         seq_len = tf.shape(x)[2]
         inv_freq = 1.0 / (10000 ** (np.arange(0, self.d_head, 2) / self.d_head))
         freqs = tf.einsum('i,j->ij', tf.range(seq_len, dtype=tf.float32), inv_freq)
@@ -69,7 +68,6 @@ class LightweightAttn(tf.keras.layers.Layer):
         return tf.reshape(x_rot, tf.shape(x))
 
     def call(self, x, training=False):
-        # LayerNorm + Residual
         x_norm = self.ln(x)
         B, L, _ = tf.shape(x_norm)[0], tf.shape(x_norm)[1], tf.shape(x_norm)[2]
         q = self.q_proj(x_norm)
@@ -78,13 +76,13 @@ class LightweightAttn(tf.keras.layers.Layer):
         q = tf.reshape(q, [B, L, self.num_heads, self.d_head])
         k = tf.reshape(k, [B, L, self.num_heads, self.d_head])
         v = tf.reshape(v, [B, L, self.num_heads, self.d_head])
-        q = tf.transpose(q, [0,2,1,3])  # [B,H,L,D_head]
+        q = tf.transpose(q, [0,2,1,3])
         k = tf.transpose(k, [0,2,1,3])
         v = tf.transpose(v, [0,2,1,3])
         q = self.apply_rope(q)
         k = self.apply_rope(k)
         attn_scores = tf.einsum('bhid,bhjd->bhij', q, k) / tf.math.sqrt(tf.cast(self.d_head, tf.float32))
-        mask = tf.linalg.band_part(tf.ones((L, L)), -1, 0)  # lower triangular
+        mask = tf.linalg.band_part(tf.ones((L, L)), -1, 0) 
         mask = tf.reshape(mask, [1, 1, L, L])
         attn_scores = attn_scores * mask + (1.0 - mask) * (-1e9)
         attn_probs = tf.nn.softmax(attn_scores, axis=-1)
@@ -165,3 +163,7 @@ def masked_perplexity(y_true, y_pred, eps=0.1):
 Smolite는 다음 데이터셋으로 되었습니다:
 
 * [Smolwrite Dataset](https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset)
+
+--- 
+## 모델 저장소
+* [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1/settings)
