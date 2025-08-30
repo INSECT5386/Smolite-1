@@ -8,14 +8,6 @@ from smolite.model import Smolite
 from generate-tokenizer import generate, ids_to_text, text_to_ids
 from smolite.loss-acc import smoothed_loss_keras, masked_accuracy, masked_perplexity
 
-def download_file(url, save_path):
-    r = requests.get(url, stream=True)
-    r.raise_for_status()
-    with open(save_path, "wb") as f:
-        for chunk in r.iter_content(8192):
-            f.write(chunk)
-    print(f"✅ {save_path} 저장됨")
-
 download_file(
     "https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset/resolve/main/VeTrans.jsonl?download=true",
     "converted.jsonl"
@@ -118,6 +110,7 @@ print("✅ 모델 가중치 저장 완료!")
 print("\n\n===== 생성 결과 =====")  
 prompt = '"안녕하세요! 한국 밴드에 대해 궁금한 것이 있어요!"'
 print(generate(model, prompt, max_len=100, max_gen=98, p=0.9, temperature=0.2, min_len=20))
+
 
 
 
