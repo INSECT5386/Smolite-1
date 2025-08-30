@@ -14,6 +14,21 @@ Smolite는 다음 데이터셋으로 되었습니다:
 ## 모델 저장소
 * [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1/settings)
 ---
+---
+
+## 모델 하이퍼파라미터
+
+| 파라미터          | 값              |
+| ------------- | -------------- |
+| vocab\_size   | 72000 |
+| seq\_len      | 100       |
+| d\_model      | 256            |
+| n\_layers     | 6            |
+| d\_ff         | 1024           |
+| num\_heads    | 8              |
+| dropout\_rate | 0.1            |
+---
+
 ### 손실 및 평가 지표
 - Smoothed Cross-Entropy Loss
 ```python
@@ -52,17 +67,3 @@ def masked_perplexity(y_true, y_pred, eps=0.1):
     return tf.exp(mean_loss)
 ```
 - pad_id 토큰을 제외하고 계산하여 패딩 영향을 제거
-
----
-
-## 모델 하이퍼파라미터
-
-| 파라미터          | 값              |
-| ------------- | -------------- |
-| vocab\_size   | 72000 |
-| seq\_len      | 100       |
-| d\_model      | 256            |
-| n\_layers     | 6            |
-| d\_ff         | 1024           |
-| num\_heads    | 8              |
-| dropout\_rate | 0.1            |
