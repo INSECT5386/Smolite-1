@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Smolite</title>
+  <title>SmolWrite (htmx)</title>
 
   <!-- 폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@
 </div>
 
 <script>
-const STORAGE_KEY='smolwrite_htmx_msgs';
+const STORAGE_KEY='smolite_htmx_msgs';
 let messages = JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
 
 function renderAll(){
@@ -115,7 +115,7 @@ function sendMessage(){
   const contentNode = botDom.querySelector('.content');
 
   // SSE 연결
-  const url='https://yuchan5386-smolwrite-1.hf.space/api/chat?message='+encodeURIComponent(text);
+  const url='https://yuchan5386-smolite.hf.space/api/chat?message='+encodeURIComponent(text);
   const es = new EventSource(url);
   let full='';
   es.onmessage = ev=>{
