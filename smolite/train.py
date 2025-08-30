@@ -25,21 +25,8 @@ download_file(
     "ko_unigram.model"
 )
 
-sp = spm.SentencePieceProcessor()
-sp.load("ko_unigram.model")
-
-pad_id = sp.piece_to_id("<pad>") if sp.piece_to_id("<pad>") != -1 else 0
-start_id = sp.piece_to_id("<start>")
-sep_id = sp.piece_to_id("<sep>")
-end_id = sp.piece_to_id("<end>")
-unk_id = sp.piece_to_id("<unk>")
-vocab_size = sp.get_piece_size()
-print(f"✅ Vocabulary size: {vocab_size}")
-
 max_len = 100
 batch_size = 64
-
-
 
 def jsonl_stream(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -131,4 +118,5 @@ print("✅ 모델 가중치 저장 완료!")
 print("\n\n===== 생성 결과 =====")  
 prompt = '"안녕하세요! 한국 밴드에 대해 궁금한 것이 있어요!"'
 print(generate(model, prompt, max_len=100, max_gen=98, p=0.9, temperature=0.2, min_len=20))
+
 
