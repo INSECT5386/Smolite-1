@@ -4,7 +4,7 @@ import tensorflow as tf
 import sentencepiece as spm
 import requests
 import pyarrow.parquet as pq
-
+from smolite.model import Smolite
 # =======================
 # 0) 파일 다운로드 함수
 # =======================
@@ -124,7 +124,7 @@ dataset = dataset.shuffle(1000).batch(batch_size).prefetch(tf.data.AUTOTUNE)
 print("✅ 스트리밍 TF Dataset 준비 완료!")
  
 
-model = InteractGPT(vocab_size=vocab_size, seq_len=max_len, d_model=256, d_ff=1024, n_layers=6)    
+model = Smolite(vocab_size=vocab_size, seq_len=max_len, d_model=256, d_ff=1024, n_layers=6)    
 dummy_input = tf.zeros((1, max_len), dtype=tf.int32)  # 배치1, 시퀀스길이 max_len  
 _ = model(dummy_input)  # 모델이 빌드됨  
 model.summary()
@@ -213,4 +213,5 @@ def generate_text_topp(model, prompt, max_len=100, max_gen=98, p=0.9, temperatur
 
 print("\n\n===== 생성 결과 =====")  
 print(generate_text_topp(model, "안녕하세요! 한국 밴드에 대해 궁금한 것이 있어요!", p=0.9))
+
 
