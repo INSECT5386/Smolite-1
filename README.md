@@ -5,6 +5,15 @@ Smolite는 효율적이고 경량화된 트랜스포머 기반 텍스트 생성 
 ---
 ### 학습 및 추론 코드 보기
 - [바로가기](https://github.com/INSECT5386/Smolite-1/tree/main/smolite)
+- 
+## 데이터셋
+
+Smolite는 다음 데이터셋으로 되었습니다:
+
+* [Smollite Dataset](https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset)
+
+## 모델 저장소
+* [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1/settings)
 ---
 ### 손실 및 평가 지표
 - Smoothed Cross-Entropy Loss
@@ -58,15 +67,3 @@ def masked_perplexity(y_true, y_pred, eps=0.1):
 | d\_ff         | 1024           |
 | num\_heads    | 8              |
 | dropout\_rate | 0.1            |
-
----
-
-## 데이터셋
-
-Smolite는 다음 데이터셋으로 되었습니다:
-
-* [Smollite Dataset](https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset)
-
---- 
-## 모델 저장소
-* [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1/settings)
