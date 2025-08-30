@@ -9,7 +9,6 @@ Smolite는 효율적이고 경량화된 트랜스포머 기반 텍스트 생성 
 ## 데이터셋
 
 Smolite는 다음 데이터셋으로 되었습니다:
-
 * [Smollite Dataset](https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset)
 
 ## 모델 저장소
