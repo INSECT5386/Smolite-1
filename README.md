@@ -5,9 +5,9 @@ Smolite는 효율적이고 경량화된 트랜스포머 기반 텍스트 생성 
 Smolite는 'XL', 'Medium', 'Small' 로 나뉩니다.
 Medium은 XL로부터 전이 학습을 하였으며, Small은 Medium으로부터 전이 학습을 하였습니다.
 
-* [XL](https://huggingface.co/Yuchan5386/Smolite-1)
-* [Medium]()
-* [Small]()
+* [XL]([https://huggingface.co/Yuchan5386/Smolite-1](https://huggingface.co/Yuchan5386/Smolite-1/tree/main/XL))
+* [Medium](https://huggingface.co/Yuchan5386/Smolite-1/tree/main/Medium)
+* [Small](https://huggingface.co/Yuchan5386/Smolite-1/tree/main/Small)
 
 ---
 ## 학습 및 추론 코드 보기
