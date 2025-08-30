@@ -7,17 +7,6 @@ import pyarrow.parquet as pq
 from smolite.model import Smolite
 from smolite.download_file import download_file
 from generate-tokenizer import generate_max, ids_to_text, text_to_ids
-# =======================
-# 0) 파일 다운로드 함수
-# =======================
-def download_file(url, save_path):
-    r = requests.get(url, stream=True)
-    r.raise_for_status()
-    with open(save_path, "wb") as f:
-        for chunk in r.iter_content(8192):
-            f.write(chunk)
-    print(f"✅ {save_path} 저장됨")
-
 
 download_file(
     "https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset/resolve/main/unigram.model?download=true",
