@@ -5,6 +5,7 @@ import sentencepiece as spm
 import requests
 import pyarrow.parquet as pq
 from smolite.model import Smolite
+from smolite.download_file import download_file
 from generate-tokenizer import generate_max, ids_to_text, text_to_ids
 # =======================
 # 0) 파일 다운로드 함수
