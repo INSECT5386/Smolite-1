@@ -33,21 +33,7 @@ pad_id = sp.piece_to_id("<pad>") if sp.piece_to_id("<pad>") != -1 else 0
 start_id = sp.piece_to_id("<start>")
 end_id = sp.piece_to_id("<end>")
 vocab_size = sp.get_piece_size()
-
 max_len = 100
-batch_size = 64
-
-def text_to_ids(text):
-    return sp.encode(text, out_type=int)
-
-def ids_to_text(ids):
-    # int로 변환 후 decode
-    text = sp.decode([int(i) for i in ids])
-    # SentencePiece의 ▁를 단어 앞 공백으로 변환
-    # 맨 앞의 공백은 제거
-    text = re.sub(r'▁+', ' ', text).strip()
-    return text
-
 model = Smolite(vocab_size, seq_len=max_len, d_model=256, n_layers=12, d_ff=1024, num_heads=8, dropout_rate=0.1)
 dummy_input = np.zeros((1, max_len), dtype=np.int32)
 model(dummy_input)
