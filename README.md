@@ -14,6 +14,9 @@ Smolite는 다음 데이터셋으로 되었습니다:
 ## 모델 저장소
 * [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1)
 ---
+## Smolite 사용해보기
+[Smolite-Demo](https://yuchan5386-smolite.hf.space)
+---
 ## 모델 하이퍼파라미터
 
 | 파라미터          | 값              |
