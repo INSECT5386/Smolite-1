@@ -23,16 +23,6 @@ download_file(
     "ko_unigram.model"
 )
 
-# =======================
-# 2) 토크나이저 로드
-# =======================
-sp = spm.SentencePieceProcessor()
-sp.load("ko_unigram.model")
-
-pad_id = sp.piece_to_id("<pad>") if sp.piece_to_id("<pad>") != -1 else 0
-start_id = sp.piece_to_id("<start>")
-end_id = sp.piece_to_id("<end>")
-vocab_size = sp.get_piece_size()
 max_len = 100
 model = Smolite(vocab_size, seq_len=max_len, d_model=256, n_layers=12, d_ff=1024, num_heads=8, dropout_rate=0.1)
 dummy_input = np.zeros((1, max_len), dtype=np.int32)
