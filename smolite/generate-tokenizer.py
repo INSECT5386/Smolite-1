@@ -1,6 +1,10 @@
 import tensorflow as tf
 import numpy as np
 
+def text_to_ids(text):
+    return sp.encode(text, out_type=int)
+def ids_to_text(ids):
+    return sp.decode(ids)
 
 def generate(model, prompt, max_len=100, max_gen=98, p=0.9, temperature=0.2, min_len=20):
     model_input = text_to_ids(f"<start> {prompt} <sep>")
