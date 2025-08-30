@@ -15,7 +15,9 @@ Smolite는 다음 데이터셋으로 되었습니다:
 * [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1)
 ---
 ## Smolite 사용해보기
-- [Smolite-Demo](https://yuchan5386-smolite.hf.space)
+- [Smolite-Online](https://yuchan5386-smolite.hf.space)
+- [Smolite-Download]()
+  
 ---
 ## 모델 하이퍼파라미터
 
