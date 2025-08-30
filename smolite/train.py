@@ -4,7 +4,8 @@ import tensorflow as tf
 import sentencepiece as spm
 import requests
 import pyarrow.parquet as pq
-from smolite.model import Smolite, generate
+from smolite.model import Smolite
+from smolite.generate import generate
 from smolite.loss-acc import smoothed_loss_keras, masked_accuracy, masked_perplexity
 
 def download_file(url, save_path):
@@ -133,11 +134,3 @@ print("✅ 모델 가중치 저장 완료!")
 print("\n\n===== 생성 결과 =====")  
 prompt = '"안녕하세요! 한국 밴드에 대해 궁금한 것이 있어요!"'
 print(generate(model, prompt, max_len=100, max_gen=98, p=0.9, temperature=0.2, min_len=20))
-
-
-
-
-
-
-
-
