@@ -5,7 +5,7 @@ import sentencepiece as spm
 import requests
 import pyarrow.parquet as pq
 from smolite.model import Smolite
-from smolite.loss-acc import 
+from smolite.loss-acc import smoothed_loss_keras, masked_accuracy, masked_perplexity
 # =======================
 # 0) 파일 다운로드 함수
 # =======================
@@ -181,6 +181,7 @@ def generate_text_topp(model, prompt, max_len=100, max_gen=98, p=0.9, temperatur
 
 print("\n\n===== 생성 결과 =====")  
 print(generate_text_topp(model, "안녕하세요! 한국 밴드에 대해 궁금한 것이 있어요!", p=0.9))
+
 
 
 
