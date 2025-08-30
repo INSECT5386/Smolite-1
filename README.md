@@ -12,7 +12,7 @@ Smolite는 다음 데이터셋으로 되었습니다:
 * [Smollite Dataset](https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset)
 
 ## 모델 저장소
-* [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1/settings)
+* [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1)
 ---
 ## 모델 하이퍼파라미터
 
