@@ -6,9 +6,7 @@ import requests
 import pyarrow.parquet as pq
 from smolite.model import Smolite
 from smolite.loss-acc import smoothed_loss_keras, masked_accuracy, masked_perplexity
-# =======================
-# 0) 파일 다운로드 함수
-# =======================
+
 def download_file(url, save_path):
     r = requests.get(url, stream=True)
     r.raise_for_status()
@@ -17,9 +15,6 @@ def download_file(url, save_path):
             f.write(chunk)
     print(f"✅ {save_path} 저장됨")
 
-# =======================
-# 1) 데이터 및 토크나이저 다운로드
-# =======================
 download_file(
     "https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset/resolve/main/VeTrans.jsonl?download=true",
     "converted.jsonl"
@@ -29,10 +24,6 @@ download_file(
     "ko_unigram.model"
 )
 
-
-# =======================
-# 토크나이저 로드
-# =======================
 sp = spm.SentencePieceProcessor()
 sp.load("ko_unigram.model")
 
@@ -51,9 +42,7 @@ def text_to_ids(text):
     return sp.encode(text, out_type=int)
 def ids_to_text(ids):
     return sp.decode(ids)
-# =======================
-# JSONL 스트리밍 generator
-# =======================
+
 def jsonl_stream(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         for line in f:
@@ -109,9 +98,6 @@ def jsonl_stream(file_path):
                     tf.convert_to_tensor(masked_target, dtype=tf.int32)
                 )
 
-# =======================
-# TF Dataset 스트리밍
-# =======================
 dataset = tf.data.Dataset.from_generator(
     lambda: jsonl_stream("converted.jsonl"),
     output_signature=(
@@ -124,8 +110,8 @@ dataset = dataset.shuffle(1000).batch(batch_size).prefetch(tf.data.AUTOTUNE)
 print("✅ 스트리밍 TF Dataset 준비 완료!")
  
 model = Smolite(vocab_size=vocab_size, seq_len=max_len, d_model=256, d_ff=1024, n_layers=6)    
-dummy_input = tf.zeros((1, max_len), dtype=tf.int32)  # 배치1, 시퀀스길이 max_len  
-_ = model(dummy_input)  # 모델이 빌드됨  
+dummy_input = tf.zeros((1, max_len), dtype=tf.int32)  max_len  
+_ = model(dummy_input) 
 model.summary()
 
 optimizer = tf.keras.optimizers.Adam(learning_rate=1e-4, beta_1=0.9, beta_2=0.95, epsilon=1e-8, clipnorm=1.0)
@@ -135,18 +121,12 @@ model.compile(
     metrics=[masked_accuracy, masked_perplexity],
     run_eagerly=False
 )
-# =======================
-# 8) 학습
-# =======================
 history = model.fit(
     dataset,
     epochs=1,
     verbose=1
 )
 
-# =======================
-# 9) 가중치 저장
-# =======================
 model.save_weights("model1.weights.h5")
 print("✅ 모델 가중치 저장 완료!")
 
@@ -181,6 +161,7 @@ def generate_text_topp(model, prompt, max_len=100, max_gen=98, p=0.9, temperatur
 
 print("\n\n===== 생성 결과 =====")  
 print(generate_text_topp(model, "안녕하세요! 한국 밴드에 대해 궁금한 것이 있어요!", p=0.9))
+
 
 
 
