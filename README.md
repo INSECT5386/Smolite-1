@@ -1,6 +1,13 @@
 # Smolite
 
-Smolite는 효율적이고 경량화된 트랜스포머 기반 텍스트 생성 모델이며, 자연스러운 일상 대화 생성에 최적화되어 있습니다. 
+Smolite는 효율적이고 경량화된 트랜스포머 기반 텍스트 생성 모델이며, 자연스러운 일상 대화 생성에 최적화되어 있습니다.
+
+Smolite는 'XL', 'Medium', 'Small' 로 나뉩니다.
+Medium은 XL로부터 전이 학습을 하였으며, Small은 Medium으로부터 전이 학습을 하였습니다.
+
+* [XL](https://huggingface.co/Yuchan5386/Smolite-1)
+* [Medium]()
+* [Small]()
 
 ---
 ## 학습 및 추론 코드 보기
@@ -10,9 +17,6 @@ Smolite는 효율적이고 경량화된 트랜스포머 기반 텍스트 생성 
 
 Smolite는 다음 데이터셋으로 되었습니다:
 * [Smollite Dataset](https://huggingface.co/datasets/Yuchan5386/Smolwrite-dataset)
-
-## 모델 저장소
-* [저장소 바로가기](https://huggingface.co/Yuchan5386/Smolite-1)
 ---
 ## Smolite 사용해보기
 - [Smolite-Online](https://yuchan5386-smolite.hf.space) : 온라인에서 사용합니다.
