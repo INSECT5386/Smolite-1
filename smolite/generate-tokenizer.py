@@ -2,6 +2,17 @@ import tensorflow as tf
 import numpy as np
 import sentencepiece as spm
 
+sp = spm.SentencePieceProcessor()
+sp.load("ko_unigram.model")
+
+pad_id = sp.piece_to_id("<pad>") if sp.piece_to_id("<pad>") != -1 else 0
+start_id = sp.piece_to_id("<start>")
+sep_id = sp.piece_to_id("<sep>")
+end_id = sp.piece_to_id("<end>")
+unk_id = sp.piece_to_id("<unk>")
+vocab_size = sp.get_piece_size()
+print(f"✅ Vocabulary size: {vocab_size}")
+
 def text_to_ids(text):
     return sp.encode(text, out_type=int)
 
